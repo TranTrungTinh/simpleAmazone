@@ -1,0 +1,19 @@
+{
+  "name": "simpleamazone",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/TranTrungTinh/simpleAmazone.git",
+  "author": "Tran Trung Tinh <trantrungtinh4954@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "bcrypt": "2.0.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.2"
+  }
+}
