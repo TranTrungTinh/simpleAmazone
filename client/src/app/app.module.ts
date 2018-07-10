@@ -7,15 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MessageComponent } from './message/message.component';
+import { RegistrationComponent } from './registration/registration.component';
 /*import service */
 import { RequestService } from './services/request.service';
 import { DataService } from './services/data.service';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    MessageComponent
+    MessageComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { DataService } from './services/data.service';
     FormsModule,
     NgbModule.forRoot()
   ],
-  providers: [RequestService, DataService],
+  providers: [RequestService, DataService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
