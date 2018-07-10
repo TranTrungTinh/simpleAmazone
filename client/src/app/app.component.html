@@ -27,10 +27,10 @@
               <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();" routerLink="/profile" class="dropdown-item">
                 <i class="fa fa-user-circle" aria-hidden="true"></i> Profile
               </a>
-              <a *ngIf="!token" (click)="closeDropdown(dropdown);collapse();logout();" routerLink="/login" class="dropdown-item">
+              <a *ngIf="!token" (click)="closeDropdown(dropdown);collapse();" routerLink="/login" class="dropdown-item">
                 <i class="fa fa-key" aria-hidden="true"></i> Login
               </a>
-              <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();" class="dropdown-item">
+              <a *ngIf="token" (click)="closeDropdown(dropdown);collapse();logout();" class="dropdown-item">
                 <i class="fa fa-key" aria-hidden="true"></i> Logout
               </a>
               <a *ngIf="!token" (click)="closeDropdown(dropdown);collapse();" routerLink="/register" class="dropdown-item">

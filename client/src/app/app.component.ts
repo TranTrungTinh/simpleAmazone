@@ -28,6 +28,7 @@ export class AppComponent {
 
   logout() {
     this.data.user = {};
+    this.data.clear();
     localStorage.clear();
     this.router.navigate(['']);
   }

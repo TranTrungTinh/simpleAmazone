@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
+
+import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
 const routes: Routes = [
   {
@@ -11,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: 'register',
-    component: RegistrationComponent
+    component: RegistrationComponent,
+    canActivate: [MustBeGuestGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [MustBeGuestGuard]
   },
   {
     path: '**',

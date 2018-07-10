@@ -30,4 +30,9 @@ export class DataService {
     this.message = message;
     this.messageType = 'warning';
   }
+
+  clear() {
+    this.message = '';
+    this.messageType = 'danger';
+  }
 }

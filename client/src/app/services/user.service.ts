@@ -12,8 +12,18 @@ export class UserService {
   signUp(email: string, plainPassword: string, name: string, isSeller: boolean ) {
     this.request.post('/user/signup', {email, plainPassword, name, isSeller})
     .then(response => {
-      if(response.success) return this.data.success('Registration Successful !');
-      this.data.error(response.message);
-    });
+      this.data.success('Registration Successful !');
+    })
+    .catch(error => this.data.error(error.message));
+  }
+
+  signIn(email: string, plainPassword: string) {
+    this.request.post('/user/signin', {email, plainPassword})
+    .then(response => {
+      const { token } = response.user;
+      localStorage.setItem('token', token);
+      this.router.navigate(['/']);
+    })
+    .catch(error => this.data.error(error.message));
   }
 }
