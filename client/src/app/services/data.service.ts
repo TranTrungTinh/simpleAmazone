@@ -8,7 +8,6 @@ export class DataService {
 
   message = '';
   messageType = 'danger';
-  user: any;
 
   constructor(private router: Router) { 
     this.router.events.subscribe(e => {

@@ -20,6 +20,9 @@ import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
 import { userReducer } from './ngrx-store/reducers';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AddressComponent } from './address/address.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { userReducer } from './ngrx-store/reducers';
     HomeComponent,
     MessageComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent,
+    SettingsComponent,
+    AddressComponent
   ],
   imports: [
     BrowserModule,

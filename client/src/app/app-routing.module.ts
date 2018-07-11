@@ -4,8 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AddressComponent } from './address/address.component';
 
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
+import { MustBeUserGuard } from './guards/must-be-user.guard';
 
 const routes: Routes = [
   {
@@ -21,6 +25,21 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
     canActivate: [MustBeGuestGuard]
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [MustBeUserGuard]
+  },
+  {
+    path: 'profile/settings',
+    component: SettingsComponent,
+    canActivate: [MustBeUserGuard]
+  },
+  {
+    path: 'profile/address',
+    component: AddressComponent,
+    canActivate: [MustBeUserGuard]
   },
   {
     path: '**',
