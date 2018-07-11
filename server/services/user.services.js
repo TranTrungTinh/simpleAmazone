@@ -1,8 +1,9 @@
 const { hash, compare } = require('bcrypt');
 const faker = require('faker');
-const { sign, verify } = require('../helpers/jwt');
+const { sign } = require('../helpers/jwt');
 const { User } = require('../models/user.model');
 const { MyError } = require('../helpers/my-error');
+const { checkObjectId } = require('../helpers/checkObjectId');
 
 class UserService {
   static async signUp(email, plainPassword, name, isSeller) {
@@ -39,6 +40,16 @@ class UserService {
     delete userInfo.password;
     userInfo.token = await sign({ _id: user._id });
     return userInfo;      
+  }
+
+  static async updateUserInfo(idUser, profile) {
+    checkObjectId(idUser);
+    const user = await User.findByIdAndUpdate(idUser, profile, { new: true });
+    if(!user) throw new MyError('CANNOT_FIND_USER', 404);
+    const userInfo = user.toObject();
+    delete userInfo.password;
+    userInfo.token = await sign({ _id: user._id });
+    return userInfo;
   }
 }
 

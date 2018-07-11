@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const { UserService } = require('../services/user.services');
+const { mustBeUser } = require('../middleware/mustBeUser.middleware');
 
 const userRouter = Router();
 
@@ -16,5 +17,20 @@ userRouter.post('/signin', (req, res) => {
   .then(user => res.send({ success: true, user }))
   .catch(res.onError);
 });
+
+userRouter.route('/profile')
+.get(mustBeUser, (req, res) => {
+  UserService.check(req.idUser)
+  .then(user => res.send({ success: true, user }))
+  .catch(res.onError);
+})
+.post(mustBeUser, (req, res) => {
+  UserService.updateUserInfo(req.idUser, req.body.profile)
+  .then(user => res.send({ success: true, user }))
+  .catch(res.onError);
+})
+
+
+
 
 module.exports = { userRouter };
