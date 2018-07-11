@@ -30,6 +30,17 @@ userRouter.route('/profile')
   .catch(res.onError);
 })
 
+userRouter.route('/address')
+.get(mustBeUser, (req, res) => {
+  UserService.getUserAddress(req.idUser)
+  .then(address => res.send({ success: true, address }))
+  .catch(res.onError);
+})
+.post(mustBeUser, (req, res) => {
+  UserService.updateUserAddress(req.idUser, req.body.profile)
+  .then(address => res.send({ success: true, address }))
+  .catch(res.onError);
+})
 
 
 

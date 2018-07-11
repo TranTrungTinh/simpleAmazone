@@ -51,6 +51,20 @@ class UserService {
     userInfo.token = await sign({ _id: user._id });
     return userInfo;
   }
+
+  static async getUserAddress(idUser) {
+    const user = await User.findById(idUser);
+    if (!user) throw new MyError('CANNOT_FIND_USER', 404);
+    return user.address.toObject();
+  }
+
+  static async updateUserAddress(idUser, profile) {
+    checkObjectId(idUser);
+    const user = await User.findByIdAndUpdate(idUser, { address: profile }, { new: true });
+    if(!user) throw new MyError('CANNOT_FIND_USER', 404);
+    return user.address.toObject();
+  }
+
 }
 
 module.exports = { UserService }
