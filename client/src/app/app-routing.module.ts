@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'categories',
+    component: CategoriesComponent
   },
   {
     path: 'register',

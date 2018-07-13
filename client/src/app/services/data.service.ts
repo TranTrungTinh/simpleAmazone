@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { SET_MESSAGE } from '../ngrx-store/actionTypes';
 
 @Injectable()
 export class DataService {
@@ -7,12 +8,8 @@ export class DataService {
   message = '';
   messageType = 'danger';
 
-  constructor(private router: Router) { 
-    this.router.events.subscribe(e => {
-      if(event instanceof NavigationStart) {
-        this.message = '';
-      }
-    });
+  constructor(private store: Store<string>) {
+    this.store.dispatch({ type: SET_MESSAGE, message: ''});
   }
 
   error(message: string) {

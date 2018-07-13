@@ -15,14 +15,16 @@ import { LoginComponent } from './login/login.component';
 import { RequestService } from './services/request.service';
 import { DataService } from './services/data.service';
 import { UserService } from './services/user.service';
+import { CategoriesService } from './services/categories.service';
 
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
-import { userReducer, messageReducer } from './ngrx-store/reducers';
+import { userReducer, messageReducer, categoriesReducer } from './ngrx-store/reducers';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { AddressComponent } from './address/address.component';
     LoginComponent,
     ProfileComponent,
     SettingsComponent,
-    AddressComponent
+    AddressComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -42,12 +45,17 @@ import { AddressComponent } from './address/address.component';
     ReactiveFormsModule,
     NgbModule.forRoot(),
     HttpModule,
-    StoreModule.forRoot({ user: userReducer, message: messageReducer })
+    StoreModule.forRoot({ 
+      user: userReducer, 
+      message: messageReducer,
+      categories: categoriesReducer
+    })
   ],
   providers: [
     RequestService, 
     DataService, 
     UserService,
+    CategoriesService,
     MustBeUserGuard,
     MustBeGuestGuard
   ],

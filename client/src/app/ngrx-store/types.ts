@@ -14,6 +14,12 @@ export interface Address {
   postalCode: string;
 }
 
+export interface Category {
+  _id: string;
+  name: string;
+}
+
 export interface AppState {
   user: UserInfo;
+  categories: Category[];
 }

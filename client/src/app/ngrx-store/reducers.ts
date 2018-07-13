@@ -1,6 +1,6 @@
-import { UserInfo } from './types';
+import { UserInfo, Category } from './types';
 import { 
-  SET_USER, LOG_OUT, SET_MESSAGE, UPDATE_ADDRESS
+  SET_USER, LOG_OUT, SET_MESSAGE, SET_CATEGORIES, CREATE_CATEGORY
 } from './actionTypes';
 
 export function userReducer(state: UserInfo = null, action) {
@@ -11,5 +11,11 @@ export function userReducer(state: UserInfo = null, action) {
 
 export function messageReducer(state: string = '', action) {
   if(action.type === SET_MESSAGE) return action.message;
+  return state;
+}
+
+export function categoriesReducer(state: Category[] = [], action) {
+  if(action.type === SET_CATEGORIES) return action.categories;
+  if(action.type === CREATE_CATEGORY) return [action.category, ...state];
   return state;
 }
