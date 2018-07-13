@@ -2,8 +2,8 @@
   <div class="container p-5">
     <h4 class="display-4">My Account Settings</h4>
     <hr>
-    <div *ngIf="message">
-      <app-message type="danger" [message]="message"></app-message>
+    <div *ngIf="data.message">
+      <app-message [type]="data.messageType" [message]="data.message"></app-message>
     </div>
     <div *ngIf="!user" class="m-auto">
       <h1 class="text-center display-3 mt-5">

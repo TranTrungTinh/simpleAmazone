@@ -20,7 +20,7 @@ import { CategoriesService } from './services/categories.service';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
-import { userReducer, messageReducer, categoriesReducer } from './ngrx-store/reducers';
+import { userReducer, categoriesReducer } from './ngrx-store/reducers';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
@@ -46,8 +46,7 @@ import { CategoriesComponent } from './categories/categories.component';
     NgbModule.forRoot(),
     HttpModule,
     StoreModule.forRoot({ 
-      user: userReducer, 
-      message: messageReducer,
+      user: userReducer,
       categories: categoriesReducer
     })
   ],

@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { SET_MESSAGE } from '../ngrx-store/actionTypes';
 
 @Injectable()
 export class DataService {
@@ -8,9 +6,7 @@ export class DataService {
   message = '';
   messageType = 'danger';
 
-  constructor(private store: Store<string>) {
-    this.store.dispatch({ type: SET_MESSAGE, message: ''});
-  }
+  constructor() {}
 
   error(message: string) {
     this.message = message;

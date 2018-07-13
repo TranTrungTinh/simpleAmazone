@@ -21,7 +21,7 @@ export class UserService {
   signUp(email: string, plainPassword: string, name: string, isSeller: boolean ) {
     this.request.post('/user/signup', {email, plainPassword, name, isSeller})
     .then(response => {
-      this.store.dispatch({ type: SET_MESSAGE, message: 'Registration Successful !!!' });
+      this.data.success('Registration Successful !!!');
     })
     .catch(error => this.data.error(error.message));
   }
@@ -41,7 +41,7 @@ export class UserService {
     this.request.post('/user/address', { profile: address })
     .then(response => {
       this.store.dispatch({ type: SET_USER, userInfo: response.user });
-      this.store.dispatch({ type: SET_MESSAGE, message: 'Update info successful !!!' });
+      this.data.success('Change Address Successful !!!');
     })
   }
 
@@ -49,7 +49,7 @@ export class UserService {
     this.request.post('/user/profile', { profile: { name , password } })
     .then(response => {
       this.store.dispatch({ type: SET_USER, userInfo: response.user });
-      this.store.dispatch({ type: SET_MESSAGE, message: 'Change address successful !!!' });
+      this.data.success('Update User Info Successful !!!');
     })
   }
 

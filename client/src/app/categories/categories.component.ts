@@ -22,10 +22,10 @@ export class CategoriesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.data.clear();
     setTimeout(() => {
       this.catService.getCategories();
       this.store.select('categories').subscribe(c => this.categories = c);
-      this.store.select('message').subscribe(m => this.data.success(m));
     }, 1000);
   }
 

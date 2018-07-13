@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
 import { UserService } from '../services/user.service';
-import { SET_MESSAGE } from '../ngrx-store/actionTypes';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +18,12 @@ export class LoginComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-    private store: Store<string>
+    private store: Store<string>,
+    public data: DataService
   ) { }
 
   ngOnInit() {
-    this.store.dispatch({ type: SET_MESSAGE, message: '' });
-    this.store.select('message').subscribe(m => this.message = m);
-
+    this.data.clear();
     this.formSignIn = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(5)]]
