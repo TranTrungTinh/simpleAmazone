@@ -49,7 +49,7 @@ export class SettingsComponent implements OnInit {
   update() {
     if(this.validate()) {
       const password = this.newPassword.trim();
-      alert(JSON.stringify(password));
+      this.userService.updateUserInfo(this.user.name, password);
     }
   }
 

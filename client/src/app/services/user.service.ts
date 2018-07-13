@@ -41,6 +41,14 @@ export class UserService {
     this.request.post('/user/address', { profile: address })
     .then(response => {
       this.store.dispatch({ type: SET_USER, userInfo: response.user });
+      this.store.dispatch({ type: SET_MESSAGE, message: 'Update info successful !!!' });
+    })
+  }
+
+  updateUserInfo(name: string, password: string) {
+    this.request.post('/user/profile', { profile: { name , password } })
+    .then(response => {
+      this.store.dispatch({ type: SET_USER, userInfo: response.user });
       this.store.dispatch({ type: SET_MESSAGE, message: 'Change address successful !!!' });
     })
   }

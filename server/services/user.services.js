@@ -46,9 +46,12 @@ class UserService {
 
   static async updateUserInfo(idUser, profile) {
     checkObjectId(idUser);
+    if(!profile.password) delete profile.password;
+    else profile.password = await hash(profile.password, 8);
     const user = await User.findByIdAndUpdate(idUser, profile, { new: true });
     if(!user) throw new MyError('CANNOT_FIND_USER', 404);
     const userInfo = user.toObject();
+    userInfo.address = user.address.toObject();
     delete userInfo.password;
     return userInfo;
   }
