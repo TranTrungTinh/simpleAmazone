@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { Store } from '@ngrx/store';
 
+import { SET_MESSAGE } from '../ngrx-store/actionTypes';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -21,7 +22,9 @@ export class RegistrationComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch({ type: SET_MESSAGE, message: '' });
     this.store.select('message').subscribe(m => this.message = m);
+
     this.formRegister = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],

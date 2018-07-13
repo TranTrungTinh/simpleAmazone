@@ -34,7 +34,7 @@ export class UserService {
       this.store.dispatch({ type: SET_USER, userInfo: response.user });
       this.router.navigate(['/']);
     })
-    .catch(error => this.data.error(error.message));
+    .catch(error => this.store.dispatch({ type: SET_MESSAGE, message: error.message }));
   }
 
   checkToken() {

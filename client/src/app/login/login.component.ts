@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
-
+import { SET_MESSAGE } from '../ngrx-store/actionTypes';
 
 @Component({
   selector: 'app-login',
@@ -11,33 +12,35 @@ import { UserService } from '../services/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  email = '';
-  password = '';
-  btnDisable = false;
+  formSignIn: FormGroup;
+  message = '';
 
-  constructor(private data: DataService, private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private store: Store<string>
+  ) { }
 
   ngOnInit() {
+    this.store.dispatch({ type: SET_MESSAGE, message: '' });
+    this.store.select('message').subscribe(m => this.message = m);
+
+    this.formSignIn = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]]
+    })
   }
 
-  validate(): boolean {
-    if(this.email) {
-      if(this.password) {
-        return true;
-      } else {
-        this.data.error('Password is not entered');
-      }
-    } else {
-      this.data.error('Email is not entered');
-    }
+  get email() {
+    return this.formSignIn.get('email');
+  }
+
+  get password() {
+    return this.formSignIn.get('password');
   }
 
   login() {
-    this.btnDisable = true;
-    if(this.validate()) {
-      this.userService.signIn(this.email, this.password);
-      this.btnDisable = false;
-    }
+    this.userService.signIn(this.email.value, this.password.value);
   }
 
 }

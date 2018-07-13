@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState, UserInfo } from './ngrx-store/types';
 
-import { DataService } from './services/data.service';
 import { UserService } from './services/user.service';
 
 import { LOG_OUT } from './ngrx-store/actionTypes';
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit {
   user: UserInfo;
 
   constructor(
-    private data: DataService, 
     private router: Router, 
     private userService: UserService,
     private store: Store<AppState>
@@ -45,7 +43,6 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.store.dispatch({ type: LOG_OUT });
-    this.data.clear();
     localStorage.clear();
     this.router.navigate(['']);
   }

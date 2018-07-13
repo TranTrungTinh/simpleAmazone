@@ -2,22 +2,30 @@
     <div class="container p-5">
       <div class="row mt-5">
         <div class="col-lg-4 offset-lg-4">
-          <app-message></app-message>
+          <div *ngIf="message">
+            <app-message type="danger" [message]="message"></app-message>
+          </div>
           <div class="card bg-light">
             <div class="card-body">
               <h4 class="text-center">Login</h4>
               <hr>
-              <form>
+              <form [formGroup]="formSignIn" (ngSubmit)="login();">
                 <div class="form-group">
                   <label class="form-control-label">Email</label>
-                  <input type="email" name="email" class="form-control" [(ngModel)]="email">
+                  <input type="email" name="email" class="form-control" formControlName="email">
+                </div>
+                <div *ngIf="email.invalid && email.touched">
+                  <app-message type="danger" message="Invalid Email"></app-message>
                 </div>
                 <div class="form-group">
                   <label class="form-control-label">Password</label>
-                  <input type="password" name="password" class="form-control" [(ngModel)]="password">
+                  <input type="password" name="password" class="form-control" formControlName="password">
+                </div>
+                <div *ngIf="password.invalid && password.touched">
+                  <app-message type="danger" message="Password must have 5 laters"></app-message>
                 </div>
                 <hr>
-                <button type="button" class="btn btn-primary btn-block" (click)="login();" [disabled]="btnDisable">Login</button>
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="formSignIn.invalid">Login</button>
               </form>
             </div>
           </div>
