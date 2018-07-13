@@ -13,4 +13,5 @@ export interface UserInfo {
 
 export interface AppState {
   user: UserInfo;
+  message: string;
 }

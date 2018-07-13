@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 
-import { DataService } from '../services/data.service';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -10,49 +11,64 @@ import { UserService } from '../services/user.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  name = '';
-  email = '';
-  password = '';
-  password1 = '';
-  isSeller = false;
+  formRegister: FormGroup;
+  message = '';
 
-  btnDisable = false;
-
-  constructor(private data: DataService, private userService: UserService) { }
+  constructor(
+    private userService: UserService,
+    private fb: FormBuilder,
+    private store: Store<string>
+  ) {}
 
   ngOnInit() {
+    this.store.select('message').subscribe(m => this.message = m);
+    this.formRegister = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      isSeller: false,
+      pw: this.fb.group({
+        password: ['', [Validators.required, Validators.minLength(5)]],
+        cofirmPassword: ['',[Validators.required]]
+      }, { validator: this.passwordMustMatch })
+    })
   }
 
-  validate(): Boolean {
-    if(this.name) {
-      if(this.email) {
-        if(this.password) {
-          if(this.password1) {
-            if(this.password === this.password1) {
-              return true;
-            } else {
-              this.data.error('Password do not match');
-            }
-          } else {
-            this.data.error('Confirmation Password is not entered');
-          }
-        } else {
-          this.data.error('Password is not entered');
-        }
-      } else {
-        this.data.error('Email is not entered');
-      }
-    } else {
-      this.data.error('Name is not entered');
-    }
+  get name() {
+    return this.formRegister.get('name');
+  }
+
+  get email() {
+    return this.formRegister.get('email');
+  }
+
+  get isSeller() {
+    return this.formRegister.get('isSeller');
+  }
+
+  get pw() {
+    return this.formRegister.get('pw');
+  }
+
+  get password() {
+    return this.formRegister.get('pw').get('password')
+  }
+
+  get confirmPassword() {
+    return this.formRegister.get('pw').get('cofirmPassword');
+  }
+
+  passwordMustMatch(control: AbstractControl) {
+    const { value } = control;
+    return (value.password === value.cofirmPassword) ? null : { passwordnotmatch: true };
   }
 
   register() {
-    this.btnDisable = true;
-    if(this.validate()) {
-      this.userService.signUp(this.email, this.password, this.name, this.isSeller);
-      this.btnDisable = false
-    }
+    this.userService.signUp(
+      this.email.value, 
+      this.password.value, 
+      this.name.value, 
+      this.isSeller.value
+    );
   }
 
 }

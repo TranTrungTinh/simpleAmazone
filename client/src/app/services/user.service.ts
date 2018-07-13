@@ -6,7 +6,7 @@ import { AppState } from '../ngrx-store/types';
 import { DataService } from '../services/data.service';
 import { RequestService } from '../services/request.service';
 
-import { SET_USER } from '../ngrx-store/actionTypes';
+import { SET_USER, SET_MESSAGE } from '../ngrx-store/actionTypes';
 
 @Injectable()
 export class UserService {
@@ -21,7 +21,7 @@ export class UserService {
   signUp(email: string, plainPassword: string, name: string, isSeller: boolean ) {
     this.request.post('/user/signup', {email, plainPassword, name, isSeller})
     .then(response => {
-      this.data.success('Registration Successful !');
+      this.store.dispatch({ type: SET_MESSAGE, message: 'Registration Successful !!!' });
     })
     .catch(error => this.data.error(error.message));
   }

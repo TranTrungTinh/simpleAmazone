@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StoreModule } from '@ngrx/store';
 /*import component */
@@ -19,7 +19,7 @@ import { UserService } from './services/user.service';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
-import { userReducer } from './ngrx-store/reducers';
+import { userReducer, messageReducer } from './ngrx-store/reducers';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
@@ -39,9 +39,10 @@ import { AddressComponent } from './address/address.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule.forRoot(),
     HttpModule,
-    StoreModule.forRoot({ user: userReducer })
+    StoreModule.forRoot({ user: userReducer, message: messageReducer })
   ],
   providers: [
     RequestService, 

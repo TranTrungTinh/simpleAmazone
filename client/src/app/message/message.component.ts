@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss']
+  template: `
+    <ngb-alert [type]="type" [dismissible]="false" >
+      {{ message }}
+    </ngb-alert>`
 })
-export class MessageComponent implements OnInit {
+export class MessageComponent  {
 
-  constructor(private data: DataService) { }
-
-  ngOnInit() {
-  }
+  @Input() message;
+  @Input() type;
+  constructor() { }
 
 }

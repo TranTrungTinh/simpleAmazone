@@ -16,6 +16,10 @@ button {
   cursor: pointer;
 }
 
+button:focus { 
+  outline: 0px !important;  
+}
+
 section {
   min-height: 600px;
 }
