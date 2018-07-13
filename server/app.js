@@ -3,6 +3,7 @@ const parser = require('body-parser');
 const cors = require('cors');
 
 const { userRouter } = require('./routes/user.route');
+const { catRouter } = require('./routes/category.route');
 
 const app = express();
 
@@ -19,5 +20,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/user', userRouter);
+app.use('/api', catRouter);
 
 module.exports = { app };
