@@ -2,7 +2,9 @@
   <div class="container p-5">
     <h4 class="display-4">My Shipping Address</h4>
     <hr>
-    <app-message></app-message>
+    <div *ngIf="message">
+      <app-message type="success" [message]="message"></app-message>
+    </div>
     <div *ngIf="!user" class="m-auto">
       <h1 class="text-center display-3 mt-5">
         <i class="fa fa-spinner fa-spin"></i>
@@ -25,7 +27,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-control-label">City</label>
-                <input type="text" name="state" class="form-control" [(ngModel)]="user.address.city">
+                <input type="text" name="city" class="form-control" [(ngModel)]="user.address.city">
               </div>
             </div>
             <div class="col-md-4">
@@ -39,7 +41,7 @@
             <label class="form-control-label">Country</label>
             <input type="text" name="country" class="form-control" [(ngModel)]="user.address.country">
           </div>
-          <button type="button" class="btn btn-danger" [disabled]="btnDisable">Change Address</button>
+          <button type="button" class="btn btn-danger" (click)="update();">Change Address</button>
         </form>
       </div>
     </div>

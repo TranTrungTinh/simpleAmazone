@@ -1,6 +1,6 @@
 import { UserInfo } from './types';
 import { 
-  SET_USER, LOG_OUT, SET_MESSAGE
+  SET_USER, LOG_OUT, SET_MESSAGE, UPDATE_ADDRESS
 } from './actionTypes';
 
 export function userReducer(state: UserInfo = null, action) {

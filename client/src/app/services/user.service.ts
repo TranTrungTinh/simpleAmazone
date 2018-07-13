@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState } from '../ngrx-store/types';
+import { AppState, Address } from '../ngrx-store/types';
 
 import { DataService } from '../services/data.service';
 import { RequestService } from '../services/request.service';
@@ -35,6 +35,14 @@ export class UserService {
       this.router.navigate(['/']);
     })
     .catch(error => this.store.dispatch({ type: SET_MESSAGE, message: error.message }));
+  }
+
+  updateAddress(address: Address) {
+    this.request.post('/user/address', { profile: address })
+    .then(response => {
+      this.store.dispatch({ type: SET_USER, userInfo: response.user });
+      this.store.dispatch({ type: SET_MESSAGE, message: 'Change address successful !!!' });
+    })
   }
 
   checkToken() {

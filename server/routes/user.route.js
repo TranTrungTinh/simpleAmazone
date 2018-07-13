@@ -38,7 +38,7 @@ userRouter.route('/address')
 })
 .post(mustBeUser, (req, res) => {
   UserService.updateUserAddress(req.idUser, req.body.profile)
-  .then(address => res.send({ success: true, address }))
+  .then(user => res.send({ success: true, user }))
   .catch(res.onError);
 })
 

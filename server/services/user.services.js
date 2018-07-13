@@ -28,6 +28,7 @@ class UserService {
     const same = await compare(plainPassword, user.password);
     if (!same) throw new MyError('INVALID_USER_INFO', 400);
     const userInfo = user.toObject();
+    userInfo.address = user.address.toObject();
     delete userInfo.password;
     userInfo.token = await sign({ _id: user._id });
     return userInfo;
@@ -37,6 +38,7 @@ class UserService {
     const user = await User.findById(idUser);
     if (!user) throw new MyError('CANNOT_FIND_USER', 404);
     const userInfo = user.toObject();
+    userInfo.address = user.address.toObject();
     delete userInfo.password;
     userInfo.token = await sign({ _id: user._id });
     return userInfo;      
@@ -48,7 +50,6 @@ class UserService {
     if(!user) throw new MyError('CANNOT_FIND_USER', 404);
     const userInfo = user.toObject();
     delete userInfo.password;
-    userInfo.token = await sign({ _id: user._id });
     return userInfo;
   }
 
@@ -62,7 +63,9 @@ class UserService {
     checkObjectId(idUser);
     const user = await User.findByIdAndUpdate(idUser, { address: profile }, { new: true });
     if(!user) throw new MyError('CANNOT_FIND_USER', 404);
-    return user.address.toObject();
+    const userInfo = user.toObject();
+    delete userInfo.password;
+    return userInfo;
   }
 
 }
