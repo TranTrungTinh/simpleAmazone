@@ -1,6 +1,6 @@
 const faker = require('faker');
 const { Product } = require('./models/product.model')
-// require('./helpers/connectDatabase');
+require('./helpers/connectDatabase');
 
 
 const obj = {
@@ -19,7 +19,7 @@ const obj = {
 function create() {
   for (let index = 0; index < 10; index++) {
     const title = faker.commerce.productName();
-    const image = faker.image.image();
+    const image = 'https://source.unsplash.com/collection/1163637/480x480';
     const price = faker.commerce.price();
     const description = faker.lorem.paragraph();
     const owner = '5b48ae9b16159905e20658a9';
@@ -32,7 +32,7 @@ function create() {
 
   for (let index = 0; index < 10; index++) {
     const title = faker.commerce.productName();
-    const image = faker.image.image();
+    const image = 'https://source.unsplash.com/collection/1163637/480x480';
     const price = faker.commerce.price();
     const description = faker.lorem.paragraph();
     const owner = '5b495592edb4b402ae451cea';
@@ -45,7 +45,7 @@ function create() {
 
   for (let index = 0; index < 10; index++) {
     const title = faker.commerce.productName();
-    const image = faker.image.image();
+    const image = 'https://source.unsplash.com/collection/1163637/480x480';
     const price = faker.commerce.price();
     const description = faker.lorem.paragraph();
     const owner = '5b4955b6edb4b402ae451ceb';
@@ -56,5 +56,5 @@ function create() {
     .catch(err => console.log(err.message));
   }
 }
-// create();
+create();
 // console.log(obj);

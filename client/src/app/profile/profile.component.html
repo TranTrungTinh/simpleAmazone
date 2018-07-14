@@ -9,7 +9,13 @@
     </div>
     <div *ngIf="user" class="row mt-5">
       <div class="col-md-3">
-        <img [src]="user.avatar" alt="userimage" class="rounded-circle image">
+        <img 
+          [defaultImage]="defaultImage" 
+          [lazyLoad]="user.avatar" 
+          [offset]="offset" 
+          alt="userimage" 
+          class="rounded-circle image"
+      >
       </div>
       <div class="col-md-8 ml-3">
         <p id="name" class="lead" >{{ user.name }}</p>

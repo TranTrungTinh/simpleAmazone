@@ -12,41 +12,54 @@
       </div>
       <div *ngIf="categories" class="card bg-light">
         <div class="card-body">
-          <form>
+          <form [formGroup]="formPost" (ngSubmit)="postProduct();">
             <div class="form-group">
               <label class="form-control-label">Title</label>
-              <input type="text" name="title" class="form-control" >
+              <input type="text" name="title" class="form-control" formControlName="title">
+            </div>
+            <div *ngIf="title.invalid && title.touched">
+              <app-message type="danger" message="Title must have 5 laters"></app-message>
             </div>
             <div class="row">
               <div class="col-md-8">
                 <div class="form-group">
                   <label class="form-control-label">Price</label>
-                  <input type="number" name="price" class="form-control" >
+                  <input type="number" name="price" class="form-control" formControlName="price">
+                </div>
+                <div *ngIf="price.invalid && price.touched">
+                  <app-message type="danger" message="Please input price for sale"></app-message>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="form-control-label">Categories</label>
-                  <select name="categoryId" class="custom-select">
+                  <select name="categoryId" class="custom-select" formControlName="category" >
                     <option *ngFor="let category of categories" [value]="category._id">
                       {{ category.name }}
                     </option>
                   </select>
+                  <div *ngIf="category.invalid && category.touched">
+                    <app-message type="danger" message="Please choose category"></app-message>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="form-group">
               <label class="form-control-label">Description</label>
-              <textarea type="text" rows="5" name="description" class="form-control"></textarea>
+              <textarea type="text" rows="5" name="description" class="form-control" formControlName="description"></textarea>
+            </div>
+            <div *ngIf="description.invalid && description.touched">
+              <app-message type="danger" message="Please input description info"></app-message>
             </div>
             <div class="form-group">
               <label class="form-control-label">Upload Image</label>
               <input type="file" accept="image/*" name="file" class="form-control-file">
             </div>
-            <button type="button" class="btn btn-danger">
+            <button type="submit" class="btn btn-danger" [disabled]="formPost.invalid">
               <i class="fa fa-upload"></i>  Post
             </button>
           </form>
+          <pre>{{ formPost.value | json }}</pre>
         </div>
       </div>
     </div>
