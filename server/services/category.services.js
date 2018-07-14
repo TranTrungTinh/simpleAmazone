@@ -1,4 +1,3 @@
-const faker = require('faker');
 const { Category } = require('../models/category.model');
 const { MyError } = require('../helpers/my-error');
 

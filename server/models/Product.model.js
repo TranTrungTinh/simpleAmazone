@@ -7,10 +7,10 @@ const ProductSchema = new Schema({
   title: String,
   image: String,
   description: String,
-  price: Number,
+  price: String,
   created: { type: Date, default: Date.now }
 });
 
-const Product = mongoose.model('Category', ProductSchema);
+const Product = mongoose.model('Product', ProductSchema);
 
 module.exports = { Product };

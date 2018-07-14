@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { StoreModule } from '@ngrx/store';
+import { LazyLoadImageModule } from 'ng-lazyload-image';
 /*import component */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,15 +17,18 @@ import { RequestService } from './services/request.service';
 import { DataService } from './services/data.service';
 import { UserService } from './services/user.service';
 import { CategoriesService } from './services/categories.service';
+import { ProductService } from './services/product.service';
 
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
-import { userReducer, categoriesReducer } from './ngrx-store/reducers';
+import { userReducer, categoriesReducer, productReducer } from './ngrx-store/reducers';
 import { ProfileComponent } from './profile/profile.component';
 import { SettingsComponent } from './settings/settings.component';
 import { AddressComponent } from './address/address.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { PostProductComponent } from './post-product/post-product.component';
+import { MyProductsComponent } from './my-products/my-products.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { CategoriesComponent } from './categories/categories.component';
     ProfileComponent,
     SettingsComponent,
     AddressComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    PostProductComponent,
+    MyProductsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,14 +53,17 @@ import { CategoriesComponent } from './categories/categories.component';
     HttpModule,
     StoreModule.forRoot({ 
       user: userReducer,
-      categories: categoriesReducer
-    })
+      categories: categoriesReducer,
+      products: productReducer
+    }),
+    LazyLoadImageModule
   ],
   providers: [
     RequestService, 
     DataService, 
     UserService,
     CategoriesService,
+    ProductService,
     MustBeUserGuard,
     MustBeGuestGuard
   ],

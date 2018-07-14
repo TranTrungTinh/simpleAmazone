@@ -21,6 +21,7 @@
           <li class="nav-item ml-0 ml-md-auto" ngbDropdown #dropdown="ngbDropdown">
             <a class="nav-link dropdown-toggle" ngbDropdownToggle>
               <i class="fa fa-user mr-1"></i>
+              <span>&nbsp;</span>
               <span *ngIf="!token">Accounts</span>
               <span *ngIf="user">{{ user.name }}</span>
             </a>
@@ -42,6 +43,7 @@
           <li class="nav-item ml-0 ml-md-2">
             <a (click)="collapse();" routerLink="/cart" routerLinkActive="active" class="nav-link">
               <i class="fa fa-shopping-cart mr-1"></i>
+              <span>  Carts</span>
             </a>
           </li>
         </ul>

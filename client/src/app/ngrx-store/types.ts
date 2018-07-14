@@ -14,6 +14,15 @@ export interface Address {
   postalCode: string;
 }
 
+export interface Product {
+  title: string;
+  image: string;
+  price: string;
+  description: string;
+  owner: UserInfo;
+  category: Category;
+}
+
 export interface Category {
   _id: string;
   name: string;
@@ -22,4 +31,5 @@ export interface Category {
 export interface AppState {
   user: UserInfo;
   categories: Category[];
+  products: Product[];
 }

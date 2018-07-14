@@ -6,7 +6,7 @@ import { AppState, Address } from '../ngrx-store/types';
 import { DataService } from '../services/data.service';
 import { RequestService } from '../services/request.service';
 
-import { SET_USER, SET_MESSAGE } from '../ngrx-store/actionTypes';
+import { SET_USER } from '../ngrx-store/actionTypes';
 
 @Injectable()
 export class UserService {
@@ -34,7 +34,7 @@ export class UserService {
       this.store.dispatch({ type: SET_USER, userInfo: response.user });
       this.router.navigate(['/']);
     })
-    .catch(error => this.store.dispatch({ type: SET_MESSAGE, message: error.message }));
+    .catch(error => this.data.error(error.message));
   }
 
   updateAddress(address: Address) {
