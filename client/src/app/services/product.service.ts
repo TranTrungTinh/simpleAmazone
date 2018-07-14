@@ -15,7 +15,7 @@ export class ProductService {
     private store: Store<AppState>
   ) { }
 
-  getProducts() {
+  getProductsByOwner() {
     this.request.get('/api/products')
     .then(response => {
       this.store.dispatch({ type: SET_PRODUCTS, products: response.products })

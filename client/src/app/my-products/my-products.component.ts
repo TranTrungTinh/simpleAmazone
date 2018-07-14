@@ -23,7 +23,7 @@ export class MyProductsComponent implements OnInit {
 
   ngOnInit() {
     setTimeout(() => {
-      this.proService.getProducts();
+      this.proService.getProductsByOwner();
       this.store.select('products').subscribe(p => this.products = p);
     }, 1000);
   }

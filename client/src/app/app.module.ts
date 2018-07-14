@@ -12,6 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { MessageComponent } from './message/message.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
+import { SettingsComponent } from './settings/settings.component';
+import { AddressComponent } from './address/address.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { PostProductComponent } from './post-product/post-product.component';
+import { MyProductsComponent } from './my-products/my-products.component';
+import { CategoryDetailComponent } from './category-detail/category-detail.component';
 /*import service */
 import { RequestService } from './services/request.service';
 import { DataService } from './services/data.service';
@@ -22,13 +29,13 @@ import { ProductService } from './services/product.service';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 
-import { userReducer, categoriesReducer, productReducer } from './ngrx-store/reducers';
-import { ProfileComponent } from './profile/profile.component';
-import { SettingsComponent } from './settings/settings.component';
-import { AddressComponent } from './address/address.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { PostProductComponent } from './post-product/post-product.component';
-import { MyProductsComponent } from './my-products/my-products.component';
+import { 
+  userReducer, 
+  categoriesReducer, 
+  productByOwnerReducer,
+  productByCatReducer
+} from './ngrx-store/reducers';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +49,8 @@ import { MyProductsComponent } from './my-products/my-products.component';
     AddressComponent,
     CategoriesComponent,
     PostProductComponent,
-    MyProductsComponent
+    MyProductsComponent,
+    CategoryDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +62,8 @@ import { MyProductsComponent } from './my-products/my-products.component';
     StoreModule.forRoot({ 
       user: userReducer,
       categories: categoriesReducer,
-      products: productReducer
+      products: productByOwnerReducer,
+      productsByCat: productByCatReducer
     }),
     LazyLoadImageModule
   ],

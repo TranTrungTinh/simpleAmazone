@@ -6,4 +6,5 @@ export const SET_USER = 'SET_USER';
 export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 
 export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const SET_PRODUCTS_BY_CAT = 'SET_PRODUCTS_BY_CAT';
 

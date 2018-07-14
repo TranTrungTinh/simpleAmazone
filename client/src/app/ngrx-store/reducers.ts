@@ -1,6 +1,7 @@
 import { UserInfo, Category, Product } from './types';
 import { 
-  SET_USER, LOG_OUT, SET_CATEGORIES, CREATE_CATEGORY, SET_PRODUCTS
+  SET_USER, LOG_OUT, SET_CATEGORIES, CREATE_CATEGORY, SET_PRODUCTS,
+  SET_PRODUCTS_BY_CAT
 } from './actionTypes';
 
 export function userReducer(state: UserInfo = null, action) {
@@ -15,7 +16,12 @@ export function categoriesReducer(state: Category[] = [], action) {
   return state;
 }
 
-export function productReducer(state: Product[] = [], action) {
+export function productByOwnerReducer(state: Product[] = [], action) {
   if(action.type === SET_PRODUCTS) return action.products;
+  return state;
+}
+
+export function productByCatReducer(state: Product[] = [], action) {
+  if(action.type === SET_PRODUCTS_BY_CAT) return action.products;
   return state;
 }
