@@ -5,6 +5,14 @@ const { productPerPage } = require('../helpers/config');
 
 class ProductService {
 
+  static getProducts(limit) {
+    return Product.find({})
+    .populate('owner', 'name')
+    .populate('category', 'name')
+    .sort({ price: 1 })
+    .limit(limit);
+  }
+
   static getProductByOwner(idUser) {
     checkObjectId(_id);
     return Product.find({ owner: idUser })

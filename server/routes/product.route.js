@@ -16,6 +16,13 @@ productRouter.route('/products')
   .catch(res.onError);
 });
 
+productRouter.route('/all/products')
+.get((req, res) => {
+  ProductService.getProducts(10)
+  .then(products => res.send({ success: true, products }))
+  .catch(res.onError);
+})
+
 productRouter.route('/products/:id')
 .get((req, res) => {
   ProductService.getProductById(req.params.id)
