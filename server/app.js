@@ -5,6 +5,7 @@ const cors = require('cors');
 const { userRouter } = require('./routes/user.route');
 const { catRouter } = require('./routes/category.route');
 const { productRouter } = require('./routes/product.route');
+const { reviewRouter } = require('./routes/review.route');
 
 const app = express();
 
@@ -23,5 +24,6 @@ app.use((req, res, next) => {
 app.use('/user', userRouter);
 app.use('/api', catRouter);
 app.use('/api', productRouter);
+app.use('/api', reviewRouter);
 
 module.exports = { app };

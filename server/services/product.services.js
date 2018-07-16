@@ -13,9 +13,9 @@ class ProductService {
     .limit(limit);
   }
 
-  static getProductByOwner(idUser) {
+  static getProductByOwner(_id) {
     checkObjectId(_id);
-    return Product.find({ owner: idUser })
+    return Product.find({ owner: _id })
     .populate('owner', 'name')
     .populate('category', 'name')
     .sort({_id: -1});
