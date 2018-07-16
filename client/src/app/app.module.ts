@@ -35,6 +35,7 @@ import {
   productByOwnerReducer,
   productByCatReducer
 } from './ngrx-store/reducers';
+import { ProductComponent } from './product/product.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import {
     CategoriesComponent,
     PostProductComponent,
     MyProductsComponent,
-    CategoryDetailComponent
+    CategoryDetailComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

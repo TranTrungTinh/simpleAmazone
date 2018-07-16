@@ -6,8 +6,9 @@ const productRouter = Router();
 
 productRouter.route('/products')
 .get(mustBeUser, (req, res) => {
-  ProductService.getProductById(req.idUser)
+  ProductService.getProductByOwner(req.idUser)
   .then(products => res.send({ success: true, products }))
+  .catch(res.onError);
 })
 .post(mustBeUser, (req, res) => {
   ProductService.addProduct({...req.body, owner: req.idUser})
@@ -15,5 +16,11 @@ productRouter.route('/products')
   .catch(res.onError);
 });
 
+productRouter.route('/products/:id')
+.get((req, res) => {
+  ProductService.getProductById(req.params.id)
+  .then(product => res.send({ success: true, product }))
+  .catch(res.onError);
+})
 
 module.exports = { productRouter };

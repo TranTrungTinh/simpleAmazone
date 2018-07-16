@@ -5,11 +5,19 @@ const { productPerPage } = require('../helpers/config');
 
 class ProductService {
 
-  static async getProductById(idUser) {
+  static getProductByOwner(idUser) {
+    checkObjectId(_id);
     return Product.find({ owner: idUser })
     .populate('owner', 'name')
     .populate('category', 'name')
     .sort({_id: -1});
+  }
+
+  static getProductById(_id) {
+    checkObjectId(_id);
+    return Product.findById({ _id })
+    .populate('owner', 'name')
+    .populate('category', 'name');
   }
 
   static async addProduct(product) {
