@@ -9,7 +9,7 @@ class ProductService {
     return Product.find({})
     .populate('owner', 'name')
     .populate('category', 'name')
-    .sort({ price: 1 })
+    .sort({ created: 1 })
     .limit(limit);
   }
 
@@ -25,7 +25,8 @@ class ProductService {
     checkObjectId(_id);
     return Product.findById({ _id })
     .populate('owner', 'name')
-    .populate('category', 'name');
+    .populate('category', 'name')
+    .deepPopulate('reviews.owner');
   }
 
   static async addProduct(product) {

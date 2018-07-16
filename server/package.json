@@ -17,6 +17,7 @@
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.2",
+    "mongoose-deep-populate": "^3.1.1",
     "mongoose-paginate": "^5.0.3"
   }
 }
