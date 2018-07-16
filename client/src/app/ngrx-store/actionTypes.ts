@@ -8,3 +8,5 @@ export const UPDATE_ADDRESS = 'UPDATE_ADDRESS';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_PRODUCTS_BY_CAT = 'SET_PRODUCTS_BY_CAT';
 
+export const SET_REVIEWS = 'SET_REVIEWS';
+export const ADD_REVIEW = 'ADD_REVIEW';

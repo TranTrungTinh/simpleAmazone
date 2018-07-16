@@ -33,7 +33,8 @@ import {
   userReducer, 
   categoriesReducer, 
   productByOwnerReducer,
-  productByCatReducer
+  productByCatReducer,
+  reviewReducer
 } from './ngrx-store/reducers';
 import { ProductComponent } from './product/product.component';
 
@@ -65,7 +66,8 @@ import { ProductComponent } from './product/product.component';
       user: userReducer,
       categories: categoriesReducer,
       products: productByOwnerReducer,
-      productsByCat: productByCatReducer
+      productsByCat: productByCatReducer,
+      reviews: reviewReducer
     }),
     LazyLoadImageModule
   ],
