@@ -12,6 +12,7 @@ import { PostProductComponent } from './post-product/post-product.component';
 import { MyProductsComponent } from './my-products/my-products.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { ProductComponent } from './product/product.component';
+import { SearchComponent } from './search/search.component';
 
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   },
   {
     path: 'categories',

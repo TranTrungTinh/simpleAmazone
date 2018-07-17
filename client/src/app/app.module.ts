@@ -37,6 +37,7 @@ import {
   reviewReducer
 } from './ngrx-store/reducers';
 import { ProductComponent } from './product/product.component';
+import { SearchComponent } from './search/search.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ProductComponent } from './product/product.component';
     PostProductComponent,
     MyProductsComponent,
     CategoryDetailComponent,
-    ProductComponent
+    ProductComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

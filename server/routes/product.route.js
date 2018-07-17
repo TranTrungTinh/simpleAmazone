@@ -30,4 +30,11 @@ productRouter.route('/products/:id')
   .catch(res.onError);
 })
 
+productRouter.route('/search/products')
+.get((req, res) => {
+  ProductService.getProductsByTitle(req.query.query, req.query.page)
+  .then(results => res.send({ success: true, results }))
+  .catch(res.onError);
+})
+
 module.exports = { productRouter };

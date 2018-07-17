@@ -9,8 +9,26 @@ class ProductService {
     return Product.find({})
     .populate('owner', 'name')
     .populate('category', 'name')
+    .populate('reviews')
     .sort({ created: 1 })
     .limit(limit);
+  }
+
+  static async getProductsByTitle(title, page) {
+    const option = {
+      populate: {path: 'category reviews', select: 'name rating'},
+      lean: false,
+      offset: (page - 1) * productPerPage, 
+      limit: productPerPage
+    };
+    const results = await Product.paginate({ title: { $regex: title, $options: 'i' } }, option);
+    return {
+      products: results.docs,
+      categoryName: results.docs[0].category.name,
+      totalProduct: results.total,
+      limit: results.limit,
+      pages: Math.ceil(results.total / productPerPage)
+    };
   }
 
   static getProductByOwner(_id) {
@@ -39,8 +57,8 @@ class ProductService {
 
   static async getProductByCategory(category, page) {
     const option = {
-      populate: {path: 'category', select: 'name'},
-      lean: true,
+      populate: {path: 'category reviews', select: 'name rating'},
+      lean: false,
       offset: (page - 1) * productPerPage, 
       limit: productPerPage
     };
