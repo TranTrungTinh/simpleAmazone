@@ -6,6 +6,7 @@ const { userRouter } = require('./routes/user.route');
 const { catRouter } = require('./routes/category.route');
 const { productRouter } = require('./routes/product.route');
 const { reviewRouter } = require('./routes/review.route');
+const { orderRouter } = require('./routes/order.route');
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use('/user', userRouter);
 app.use('/api', catRouter);
 app.use('/api', productRouter);
 app.use('/api', reviewRouter);
+app.use('/api', orderRouter);
 
 module.exports = { app };

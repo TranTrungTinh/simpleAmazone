@@ -1,7 +1,8 @@
 import { UserInfo, Category, Product, Review, Cart, CartItem } from './types';
 import { 
   SET_USER, LOG_OUT, SET_CATEGORIES, CREATE_CATEGORY, SET_PRODUCTS,
-  SET_PRODUCTS_BY_CAT, SET_REVIEWS, ADD_REVIEW, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT
+  SET_PRODUCTS_BY_CAT, SET_REVIEWS, ADD_REVIEW, ADD_PRODUCT, UPDATE_PRODUCT, 
+  DELETE_PRODUCT, CLEAR_CART
 } from './actionTypes';
 
 export function userReducer(state: UserInfo = null, action) {
@@ -63,6 +64,9 @@ export function cartReducer(state: Cart = cart, action) {
   if(action.type === DELETE_PRODUCT) {
     const products = state.products.filter(item => item._id !== action._id);
     return { products, total: totalPrice(products) };
+  }
+  if(action.type === CLEAR_CART) {
+    return cart;
   }
   return state;
 }

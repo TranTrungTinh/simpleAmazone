@@ -3,10 +3,7 @@
     <h3 *ngIf="!cart.products.length" class="display-2 text-center mt-5">Cart is Empty</h3>
     <div *ngIf="cart.products.length" class="row">
       <div class="col-md-9">
-        <p class="lead font-weight-bold">
-          <i class="fa fa-shopping-cart"></i> 
-          Shopping Cart
-        </p>
+        <p class="lead font-weight-bold">Shopping Cart</p>
         <div class="row">
           <div class="offset-8 col-2 d-none d-md-block">
             <p><small class="text-muted">Price</small></p>
@@ -64,11 +61,55 @@
               <span class="ml-1 font-weight-bold text-danger">{{ cart.total | currency }}</span>
             </h5>
             <br>
-            <button class="btn btn-danger btn-block">Checkout</button>
+            <button class="btn btn-danger btn-block" (click)="open(content)">Checkout</button>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <pre>{{ cart | json }}</pre>
 </section>
+
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header bg-light m-0">
+    <div class="text-center mx-auto">
+      <img src="../../assets/img/logo.png" alt="cover" class="rounded mx-auto d-block" width="75px">
+      <h5 class="modal-title m-0">SimpleAmazon</h5>
+      <small class="text-muted">Checkout Payment</small>
+    </div>
+    
+  </div>
+  <div class="modal-body content p-5">
+    <form>
+      <div class="form-group">
+        <input type="email" class="form-control" placeholder="&#xf0e0;  Email" style="font-family:Arial, FontAwesome" value="{{user.email}}">
+      </div>
+      <div class="form-group">
+        <input type="number" class="form-control" placeholder="&#xf09d;  Card number" style="font-family:Arial, FontAwesome">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-6">
+          <input type="text" class="form-control" placeholder="&#xf073;  MM/YY" style="font-family:Arial, FontAwesome">
+        </div>
+        <div class="form-group col-sm-6">
+          <input type="number" class="form-control" placeholder="&#xf023;   CVC" style="font-family:Arial, FontAwesome">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox">
+          <label class="form-check-label">Remember me</label>
+        </div>
+      </div>
+      <button type="button" 
+        class="{{ !isLoading && isSuccess ? 
+          'btn btn-success btn-block text-white font-weight-bold' :
+          'btn btn-primary btn-block text-white font-weight-bold' }}"
+        (click)="checkout();"
+      >
+        <i *ngIf="isLoading && !isSuccess" class="fa fa-spinner fa-spin"></i>
+        <span *ngIf="!isLoading && !isSuccess">Pay {{ cart.total | currency }}</span>
+        <span *ngIf="!isLoading && isSuccess">Payment Successful</span>
+      </button>
+    </form>
+  </div>
+</ng-template>

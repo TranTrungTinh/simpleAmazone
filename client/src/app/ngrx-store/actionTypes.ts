@@ -14,3 +14,4 @@ export const ADD_REVIEW = 'ADD_REVIEW';
 export const ADD_PRODUCT = 'ADD_PRODUCT';
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const CLEAR_CART = 'CLEAR_CART';
