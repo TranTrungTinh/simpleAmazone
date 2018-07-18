@@ -1,4 +1,5 @@
 export interface UserInfo {
+  _id: string;
   name: string;
   email: string;
   avatar: string;
@@ -15,6 +16,7 @@ export interface Address {
 }
 
 export interface Product {
+  _id: string;
   title: string;
   image: string;
   price: string;
@@ -24,6 +26,7 @@ export interface Product {
 }
 
 export interface Review {
+  _id: string;
   title: string;
   description: string;
   rating: number;
@@ -35,9 +38,24 @@ export interface Category {
   name: string;
 }
 
+export interface CartItem {
+  _id: string;
+  price: number;
+  image: string;
+  quantity: number;
+  owner: string;
+  category: string;
+}
+
+export interface Cart {
+  total: number;
+  products: CartItem[];
+}
+
 export interface AppState {
   user: UserInfo;
   categories: Category[];
   products: Product[];
   reviews: Review[];
+  cart: Cart
 }

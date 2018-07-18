@@ -34,10 +34,12 @@ import {
   categoriesReducer, 
   productByOwnerReducer,
   productByCatReducer,
-  reviewReducer
+  reviewReducer,
+  cartReducer
 } from './ngrx-store/reducers';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -55,7 +57,8 @@ import { SearchComponent } from './search/search.component';
     MyProductsComponent,
     CategoryDetailComponent,
     ProductComponent,
-    SearchComponent
+    SearchComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { SearchComponent } from './search/search.component';
       categories: categoriesReducer,
       products: productByOwnerReducer,
       productsByCat: productByCatReducer,
-      reviews: reviewReducer
+      reviews: reviewReducer,
+      cart: cartReducer
     }),
     LazyLoadImageModule
   ],

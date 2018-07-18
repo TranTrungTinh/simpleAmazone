@@ -13,6 +13,7 @@ import { MyProductsComponent } from './my-products/my-products.component';
 import { CategoryDetailComponent } from './category-detail/category-detail.component';
 import { ProductComponent } from './product/product.component';
 import { SearchComponent } from './search/search.component';
+import { CartComponent } from './cart/cart.component';
 
 import { MustBeGuestGuard } from './guards/must-be-guest.guard';
 import { MustBeUserGuard } from './guards/must-be-user.guard';
@@ -51,6 +52,11 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent,
+    canActivate: [MustBeUserGuard]
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
     canActivate: [MustBeUserGuard]
   },
   {

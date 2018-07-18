@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 
 import { AppState, Review, Product } from '../ngrx-store/types';
-import { SET_REVIEWS, ADD_REVIEW } from '../ngrx-store/actionTypes';
+import { SET_REVIEWS, ADD_REVIEW, ADD_PRODUCT } from '../ngrx-store/actionTypes';
 
 @Component({
   selector: 'app-product',
@@ -49,7 +49,6 @@ export class ProductComponent implements OnInit {
     this.data.clear();
   }
 
-
   addReview() {
     const { title, description, rating, idProduct } = this.myReview;
     if(!title || !description) this.data.error('Please input title and description !!!')
@@ -61,7 +60,18 @@ export class ProductComponent implements OnInit {
         setTimeout(() => this.data.clear(), 5000);
       })
       .catch(error => this.data.error(error.message));
-    
+  }
+
+  addCart() {
+    const payload = {
+      _id: this.product._id,
+      price: this.product.price,
+      image: this.product.image,
+      quantity: 1,
+      owner: this.product.owner.name,
+      category: this.product.category.name
+    }
+    this.store.dispatch({ type: ADD_PRODUCT,  payload });
   }
 
 }

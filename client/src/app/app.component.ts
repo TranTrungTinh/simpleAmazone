@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AppState, UserInfo } from './ngrx-store/types';
+import { AppState, UserInfo, Cart } from './ngrx-store/types';
 
 import { UserService } from './services/user.service';
 
@@ -14,9 +14,11 @@ import { LOG_OUT } from './ngrx-store/actionTypes';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+
   searchTerm = '';
   isCollapsed = true;
   user: UserInfo;
+  cart: Cart;
 
   constructor(
     private router: Router, 
@@ -26,6 +28,7 @@ export class AppComponent implements OnInit {
   
   ngOnInit() {
     this.store.select('user').subscribe(user => this.user = user);
+    this.store.select('cart').subscribe(c => this.cart = c);
     this.userService.checkToken();
   }
 

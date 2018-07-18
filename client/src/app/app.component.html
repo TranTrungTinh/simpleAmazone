@@ -43,7 +43,12 @@
           <li class="nav-item ml-0 ml-md-2">
             <a (click)="collapse();" routerLink="/cart" routerLinkActive="active" class="nav-link">
               <i class="fa fa-shopping-cart mr-1"></i>
-              <span>  Carts</span>
+              <span> Carts </span>
+              <span 
+                *ngIf="cart && cart.products.length"
+                class="badge badge-warning ml-1" 
+                style="font-size: 1rem;" 
+              >{{ cart.products.length }}</span>
             </a>
           </li>
         </ul>

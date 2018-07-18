@@ -38,7 +38,7 @@
             <div class="card-body">
               <h5 class="card-title">Price: {{ product.price | currency }}</h5>
               <br>
-              <button type="button" class="btn btn-block btn-warning">Add to Cart</button>
+              <button type="button" class="btn btn-block btn-warning" (click)="addCart();" >Add to Cart</button>
             </div>
           </div>
         </div>

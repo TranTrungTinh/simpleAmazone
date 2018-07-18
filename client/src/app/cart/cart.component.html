@@ -1,0 +1,74 @@
+<section id="cart">
+  <div class="container-fluid p-5">
+    <h3 *ngIf="!cart.products.length" class="display-2 text-center mt-5">Cart is Empty</h3>
+    <div *ngIf="cart.products.length" class="row">
+      <div class="col-md-9">
+        <p class="lead font-weight-bold">
+          <i class="fa fa-shopping-cart"></i> 
+          Shopping Cart
+        </p>
+        <div class="row">
+          <div class="offset-8 col-2 d-none d-md-block">
+            <p><small class="text-muted">Price</small></p>
+          </div>
+          <div class="col-2 d-none d-md-block">
+            <p><small class="text-muted">Quantity</small></p>
+          </div>
+        </div>
+        <hr class="mt-0">
+        <div *ngFor="let item of cart.products; let i=index" class="cartItem">
+          <div class="row">
+            <div class="col-4 col-md-2">
+              <a routerLink="/product/{{ item._id }}">
+                <img 
+                  [defaultImage]="defaultImage" 
+                  [lazyLoad]="item.image" 
+                  [offset]="offset" alt="productImage" class="img-fluid img-thumbnail">
+              </a>
+            </div>
+            <div class="col-5 col-md-6">
+              <h5><a routerLink="/product/{{ item._id }}">{{ item.title }}</a></h5>
+              <p class="m-0">
+                <small class="text-muted">{{ item.owner }}</small>
+              </p>
+              <p class="m-0">
+                <small class="text-muted">{{ item.category }}</small>
+              </p>
+              <a class="text-danger" (click)="delete(item._id)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </div>
+            <div class="col-1 col-md-2">
+              <h6 class="font-weight-bold text-danger">{{item.price | currency}}</h6>
+            </div>
+            <div class="col-1 mt-5 mt-md-0 p-0">
+              <input 
+                type="number" 
+                min="0"
+                class="form-control text-center"
+                [(ngModel)]="quantity[i]"
+                (change)="onChange(i, item._id);"
+              >
+            </div>
+          </div>
+          <hr>
+        </div>
+        <h5 class="text-right">Total:
+          <span class="ml-1 font-weight-bold text-danger">{{ cart.total | currency }}</span>
+        </h5>
+      </div>
+      <div class="col-md-3">
+        <div class="card bg-light">
+          <div class="card-body">
+            <h5>Total:
+              <span class="ml-1 font-weight-bold text-danger">{{ cart.total | currency }}</span>
+            </h5>
+            <br>
+            <button class="btn btn-danger btn-block">Checkout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre>{{ cart | json }}</pre>
+</section>
